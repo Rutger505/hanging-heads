@@ -2,7 +2,7 @@
 
 <p align="center">A Minecraft mod that adds hanging mob heads.</p>
 
-<p align="center">Get it on Modrinth or CurseForge.</p>
+<p align="center">Get it on <a href="https://modrinth.com/mod/hanging-heads">Modrinth</a> or <a href="https://www.curseforge.com/minecraft/mc-mods/hanging-heads">CurseForge</a>.</p>
 
 <p align="center"><img src="https://i.imgur.com/QuZo9G5.png" alt="Showcase" width="600" /></p>
 
