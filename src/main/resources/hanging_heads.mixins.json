@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "package": "net.zlt.hangingheads.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AbstractSkullBlockMixin",
+    "StandingAndWallBlockItemMixin",
+    "WitherSkullBlockMixin"
+  ],
+  "client": [
+    "client.SkullBlockRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

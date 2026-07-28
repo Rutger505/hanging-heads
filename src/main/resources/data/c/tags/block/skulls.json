@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "hanging_heads:skeleton_hanging_skull",
+    "hanging_heads:wither_skeleton_hanging_skull",
+    "hanging_heads:zombie_hanging_head",
+    "hanging_heads:player_hanging_head",
+    "hanging_heads:creeper_hanging_head",
+    "hanging_heads:dragon_hanging_head",
+    "hanging_heads:piglin_hanging_head"
+  ]
+}
