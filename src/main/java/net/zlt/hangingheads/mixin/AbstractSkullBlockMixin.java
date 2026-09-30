@@ -10,12 +10,12 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(AbstractSkullBlock.class)
 public class AbstractSkullBlockMixin {
-    @ModifyExpressionValue(method = "getTicker", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z", ordinal = 1))
+    @ModifyExpressionValue(method = "getTicker", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Ljava/lang/Object;)Z", ordinal = 1))
     private boolean hangingHeads$isDragonHead(boolean isDragonWallHead, @Local(argsOnly = true) BlockState state) {
         return isDragonWallHead || state.is(ModBlocks.DRAGON_HANGING_HEAD);
     }
 
-    @ModifyExpressionValue(method = "getTicker", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z", ordinal = 3))
+    @ModifyExpressionValue(method = "getTicker", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Ljava/lang/Object;)Z", ordinal = 3))
     private boolean hangingHeads$isPiglinHead(boolean isPiglinWallHead, @Local(argsOnly = true) BlockState state) {
         return isPiglinWallHead || state.is(ModBlocks.PIGLIN_HANGING_HEAD);
     }

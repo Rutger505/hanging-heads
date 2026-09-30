@@ -14,7 +14,7 @@ import java.util.function.Predicate;
 
 @Mixin(WitherSkullBlock.class)
 public abstract class WitherSkullBlockMixin {
-    @ModifyExpressionValue(method = "checkSpawn(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/SkullBlockEntity;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z", ordinal = 1))
+    @ModifyExpressionValue(method = "checkSpawn(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/SkullBlockEntity;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Ljava/lang/Object;)Z", ordinal = 1))
     private static boolean hangingHeads$checkWitherSpawn(boolean isWitherSkeletonWallSkull, @Local BlockState blockState) {
         return isWitherSkeletonWallSkull || blockState.is(ModBlocks.WITHER_SKELETON_HANGING_SKULL);
     }

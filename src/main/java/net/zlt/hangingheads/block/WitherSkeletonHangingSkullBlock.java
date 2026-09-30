@@ -8,7 +8,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SkullBlock;
 import net.minecraft.world.level.block.WitherSkullBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public class WitherSkeletonHangingSkullBlock extends HangingSkullBlock {
     public static final MapCodec<WitherSkeletonHangingSkullBlock> CODEC = simpleCodec(WitherSkeletonHangingSkullBlock::new);

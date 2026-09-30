@@ -42,7 +42,7 @@ public class HangingSkullBlock extends AbstractSkullBlock {
     }
 
     @Override
-    protected VoxelShape getOcclusionShape(BlockState state, BlockGetter level, BlockPos pos) {
+    protected VoxelShape getOcclusionShape(BlockState state) {
         return Shapes.empty();
     }
 
