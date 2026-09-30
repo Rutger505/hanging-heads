@@ -1,21 +1,28 @@
 <p align="center"><img src="https://i.imgur.com/UdgyS8c.png" alt="Title" /></p>
 
-<p align="center">A Minecraft mod that adds hanging mob heads.</p>
-
-<p align="center">Get it on <a href="https://modrinth.com/mod/hanging-heads">Modrinth</a> or <a href="https://www.curseforge.com/minecraft/mc-mods/hanging-heads">CurseForge</a>.</p>
+<p align="center">A Paper plugin that adds hanging mob heads.</p>
 
 <p align="center"><img src="https://i.imgur.com/QuZo9G5.png" alt="Showcase" width="600" /></p>
 
-<p align="center">If you would like to support the development of this mod, please consider <a href="ko-fi.com/zlt09">donating on Ko-fi</a>!</p>
+This is a Paper port of [Hanging Heads](https://github.com/ZLT9/hanging-heads) by ZLT ([Modrinth](https://modrinth.com/mod/hanging-heads), [Ko-fi](https://ko-fi.com/zlt09)).
 
-<p align="center"><a href="https://ko-fi.com/J3J810251V" target="_blank"><img src="https://storage.ko-fi.com/cdn/kofi3.png?v=3" alt="Buy Me a Coffee at ko-fi.com" width="400" /></a></p>
+## For players
 
-<h2>For players</h2>
+Right-click the underside of a block with any mob head to hang it from the ceiling. Punch it to take it down again.
 
-<p><b>Hanging Heads</b> allows mob heads to be placed on the underside of blocks, just like they can be placed on floors and walls.</p>
+No client mod is needed: the heads are made of vanilla display entities, so they work on unmodded clients.
 
-<p align="center"><img src="https://i.imgur.com/FrhsKOk.png" alt="Comparison" width="400" /></p>
+## For server owners
 
-<h2>For modpack creators</h2>
+Drop the jar into `plugins/` on a Paper 26.2 server.
 
-<p>You are free to include <b>Hanging Heads</b> in any modpack, as long as you don't modify the contact information and all downloads are hosted on Modrinth or CurseForge. Thank you for considering my mod for your modpack!</p>
+- Placing and breaking fire `BlockPlaceEvent` and `BlockBreakEvent`, so protection plugins apply.
+- Hanging heads block fluids and block placement, and pop off when a piston pushes into them or a falling block lands on them.
+- Dragon and piglin heads don't animate, and hanging wither skeleton skulls don't count towards summoning a Wither.
+
+## Building
+
+```sh
+./gradlew build      # jar in build/libs
+./gradlew runServer  # local Paper test server
+```

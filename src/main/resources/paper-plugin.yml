@@ -1,0 +1,6 @@
+name: HangingHeads
+version: '${version}'
+main: net.zlt.hangingheads.HangingHeadsPlugin
+api-version: '26.2'
+description: Allows mob heads to be placed on the underside of blocks.
+authors: [ZLT, Rutger505]
