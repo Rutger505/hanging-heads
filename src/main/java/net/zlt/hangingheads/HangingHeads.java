@@ -1,17 +1,16 @@
 package net.zlt.hangingheads;
 
 import com.mojang.logging.LogUtils;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.common.Mod;
+import net.fabricmc.api.ModInitializer;
 import net.zlt.hangingheads.block.ModBlocks;
 import org.slf4j.Logger;
 
-@Mod(HangingHeads.ID)
-public class HangingHeads {
+public class HangingHeads implements ModInitializer {
     public static final String ID = "hanging_heads";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public HangingHeads(IEventBus modEventBus) {
-        ModBlocks.register(modEventBus);
+    @Override
+    public void onInitialize() {
+        ModBlocks.register();
     }
 }

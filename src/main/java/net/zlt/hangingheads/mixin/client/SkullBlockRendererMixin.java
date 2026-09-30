@@ -25,7 +25,7 @@ public abstract class SkullBlockRendererMixin {
             return;
         }
 
-        float y = block == ModBlocks.DRAGON_HANGING_HEAD.get() ? 0.25f : 0.5f;
+        float y = block == ModBlocks.DRAGON_HANGING_HEAD ? 0.25f : 0.5f;
         state.transformation = new Transformation(new Matrix4f().translation(0.0f, y, 0.0f).mul(state.transformation.getMatrix()));
     }
 }

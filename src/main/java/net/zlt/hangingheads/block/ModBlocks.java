@@ -1,5 +1,10 @@
 package net.zlt.hangingheads.block;
 
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
@@ -8,59 +13,60 @@ import net.minecraft.world.level.block.SkullBlock;
 import net.minecraft.world.level.block.entity.BlockEntityTypes;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.PushReaction;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
-import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredRegister;
 import net.zlt.hangingheads.HangingHeads;
+
+import java.util.function.Function;
 
 public final class ModBlocks {
     private ModBlocks() {}
 
-    private static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(HangingHeads.ID);
-
-    public static final DeferredBlock<HangingSkullBlock> SKELETON_HANGING_SKULL = BLOCKS.registerBlock(
+    public static final HangingSkullBlock SKELETON_HANGING_SKULL = register(
         "skeleton_hanging_skull",
         properties -> new HangingSkullBlock(SkullBlock.Types.SKELETON, properties),
-        () -> hangingVariant(Blocks.SKELETON_SKULL)
+        Blocks.SKELETON_SKULL
     );
 
-    public static final DeferredBlock<WitherSkeletonHangingSkullBlock> WITHER_SKELETON_HANGING_SKULL = BLOCKS.registerBlock(
+    public static final WitherSkeletonHangingSkullBlock WITHER_SKELETON_HANGING_SKULL = register(
         "wither_skeleton_hanging_skull",
         WitherSkeletonHangingSkullBlock::new,
-        () -> hangingVariant(Blocks.WITHER_SKELETON_SKULL)
+        Blocks.WITHER_SKELETON_SKULL
     );
 
-    public static final DeferredBlock<HangingSkullBlock> ZOMBIE_HANGING_HEAD = BLOCKS.registerBlock(
+    public static final HangingSkullBlock ZOMBIE_HANGING_HEAD = register(
         "zombie_hanging_head",
         properties -> new HangingSkullBlock(SkullBlock.Types.ZOMBIE, properties),
-        () -> hangingVariant(Blocks.ZOMBIE_HEAD)
+        Blocks.ZOMBIE_HEAD
     );
 
-    public static final DeferredBlock<HangingSkullBlock> PLAYER_HANGING_HEAD = BLOCKS.registerBlock(
+    public static final HangingSkullBlock PLAYER_HANGING_HEAD = register(
         "player_hanging_head",
         properties -> new HangingSkullBlock(SkullBlock.Types.PLAYER, properties),
-        () -> hangingVariant(Blocks.PLAYER_HEAD)
+        Blocks.PLAYER_HEAD
     );
 
-    public static final DeferredBlock<HangingSkullBlock> CREEPER_HANGING_HEAD = BLOCKS.registerBlock(
+    public static final HangingSkullBlock CREEPER_HANGING_HEAD = register(
         "creeper_hanging_head",
         properties -> new HangingSkullBlock(SkullBlock.Types.CREEPER, properties),
-        () -> hangingVariant(Blocks.CREEPER_HEAD)
+        Blocks.CREEPER_HEAD
     );
 
-    public static final DeferredBlock<HangingSkullBlock> DRAGON_HANGING_HEAD = BLOCKS.registerBlock(
+    public static final HangingSkullBlock DRAGON_HANGING_HEAD = register(
         "dragon_hanging_head",
         properties -> new HangingSkullBlock(SkullBlock.Types.DRAGON, properties),
-        () -> hangingVariant(Blocks.DRAGON_HEAD)
+        Blocks.DRAGON_HEAD
     );
 
-    public static final DeferredBlock<HangingSkullBlock> PIGLIN_HANGING_HEAD = BLOCKS.registerBlock(
+    public static final HangingSkullBlock PIGLIN_HANGING_HEAD = register(
         "piglin_hanging_head",
         properties -> new HangingSkullBlock(SkullBlock.Types.PIGLIN, properties),
-        () -> hangingVariant(Blocks.PIGLIN_HEAD)
+        Blocks.PIGLIN_HEAD
     );
+
+    private static <B extends Block> B register(String name, Function<BlockBehaviour.Properties, B> factory, Block standingBlock) {
+        ResourceKey<Block> key = ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(HangingHeads.ID, name));
+        B block = factory.apply(hangingVariant(standingBlock).setId(key));
+        return Registry.register(BuiltInRegistries.BLOCK, key, block);
+    }
 
     private static BlockBehaviour.Properties hangingVariant(Block standingBlock) {
         return BlockBehaviour.Properties.of()
@@ -70,34 +76,21 @@ public final class ModBlocks {
             .pushReaction(PushReaction.DESTROY);
     }
 
-    public static void register(IEventBus modEventBus) {
-        BLOCKS.register(modEventBus);
-        modEventBus.addListener(ModBlocks::commonSetup);
-        modEventBus.addListener(ModBlocks::onBlockEntityTypeAddBlocks);
-    }
+    public static void register() {
+        Item.BY_BLOCK.put(SKELETON_HANGING_SKULL, Items.SKELETON_SKULL);
+        Item.BY_BLOCK.put(CREEPER_HANGING_HEAD, Items.CREEPER_HEAD);
+        Item.BY_BLOCK.put(DRAGON_HANGING_HEAD, Items.DRAGON_HEAD);
+        Item.BY_BLOCK.put(ZOMBIE_HANGING_HEAD, Items.ZOMBIE_HEAD);
+        Item.BY_BLOCK.put(WITHER_SKELETON_HANGING_SKULL, Items.WITHER_SKELETON_SKULL);
+        Item.BY_BLOCK.put(PLAYER_HANGING_HEAD, Items.PLAYER_HEAD);
+        Item.BY_BLOCK.put(PIGLIN_HANGING_HEAD, Items.PIGLIN_HEAD);
 
-    public static void commonSetup(FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            Item.BY_BLOCK.put(SKELETON_HANGING_SKULL.get(), Items.SKELETON_SKULL);
-            Item.BY_BLOCK.put(CREEPER_HANGING_HEAD.get(), Items.CREEPER_HEAD);
-            Item.BY_BLOCK.put(DRAGON_HANGING_HEAD.get(), Items.DRAGON_HEAD);
-            Item.BY_BLOCK.put(ZOMBIE_HANGING_HEAD.get(), Items.ZOMBIE_HEAD);
-            Item.BY_BLOCK.put(WITHER_SKELETON_HANGING_SKULL.get(), Items.WITHER_SKELETON_SKULL);
-            Item.BY_BLOCK.put(PLAYER_HANGING_HEAD.get(), Items.PLAYER_HEAD);
-            Item.BY_BLOCK.put(PIGLIN_HANGING_HEAD.get(), Items.PIGLIN_HEAD);
-        });
-    }
-
-    public static void onBlockEntityTypeAddBlocks(BlockEntityTypeAddBlocksEvent event) {
-        event.modify(
-            BlockEntityTypes.SKULL,
-            SKELETON_HANGING_SKULL.get(),
-            CREEPER_HANGING_HEAD.get(),
-            DRAGON_HANGING_HEAD.get(),
-            ZOMBIE_HANGING_HEAD.get(),
-            WITHER_SKELETON_HANGING_SKULL.get(),
-            PLAYER_HANGING_HEAD.get(),
-            PIGLIN_HANGING_HEAD.get()
-        );
+        BlockEntityTypes.SKULL.addValidBlock(SKELETON_HANGING_SKULL);
+        BlockEntityTypes.SKULL.addValidBlock(CREEPER_HANGING_HEAD);
+        BlockEntityTypes.SKULL.addValidBlock(DRAGON_HANGING_HEAD);
+        BlockEntityTypes.SKULL.addValidBlock(ZOMBIE_HANGING_HEAD);
+        BlockEntityTypes.SKULL.addValidBlock(WITHER_SKELETON_HANGING_SKULL);
+        BlockEntityTypes.SKULL.addValidBlock(PLAYER_HANGING_HEAD);
+        BlockEntityTypes.SKULL.addValidBlock(PIGLIN_HANGING_HEAD);
     }
 }

@@ -21,6 +21,6 @@ public abstract class WitherSkullBlockMixin {
 
     @ModifyArg(method = "getOrCreateWitherFull", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/pattern/BlockInWorld;hasState(Ljava/util/function/Predicate;)Ljava/util/function/Predicate;"))
     private static Predicate<BlockState> hangingHeads$getOrCreateWitherFull(Predicate<BlockState> state) {
-        return state.or(BlockStatePredicate.forBlock(ModBlocks.WITHER_SKELETON_HANGING_SKULL.get()));
+        return state.or(BlockStatePredicate.forBlock(ModBlocks.WITHER_SKELETON_HANGING_SKULL));
     }
 }

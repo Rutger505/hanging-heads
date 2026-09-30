@@ -36,19 +36,19 @@ public abstract class StandingAndWallBlockItemMixin extends BlockItem {
         Block standingBlock = getBlock();
         Block hangingBlock;
         if (standingBlock == Blocks.SKELETON_SKULL) {
-            hangingBlock = ModBlocks.SKELETON_HANGING_SKULL.get();
+            hangingBlock = ModBlocks.SKELETON_HANGING_SKULL;
         } else if (standingBlock == Blocks.CREEPER_HEAD) {
-            hangingBlock = ModBlocks.CREEPER_HANGING_HEAD.get();
+            hangingBlock = ModBlocks.CREEPER_HANGING_HEAD;
         } else if (standingBlock == Blocks.DRAGON_HEAD) {
-            hangingBlock = ModBlocks.DRAGON_HANGING_HEAD.get();
+            hangingBlock = ModBlocks.DRAGON_HANGING_HEAD;
         } else if (standingBlock == Blocks.ZOMBIE_HEAD) {
-            hangingBlock = ModBlocks.ZOMBIE_HANGING_HEAD.get();
+            hangingBlock = ModBlocks.ZOMBIE_HANGING_HEAD;
         } else if (standingBlock == Blocks.WITHER_SKELETON_SKULL) {
-            hangingBlock = ModBlocks.WITHER_SKELETON_HANGING_SKULL.get();
+            hangingBlock = ModBlocks.WITHER_SKELETON_HANGING_SKULL;
         } else if (standingBlock == Blocks.PLAYER_HEAD) {
-            hangingBlock = ModBlocks.PLAYER_HANGING_HEAD.get();
+            hangingBlock = ModBlocks.PLAYER_HANGING_HEAD;
         } else if (standingBlock == Blocks.PIGLIN_HEAD) {
-            hangingBlock = ModBlocks.PIGLIN_HANGING_HEAD.get();
+            hangingBlock = ModBlocks.PIGLIN_HANGING_HEAD;
         } else {
             return;
         }

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "hanging_heads",
+  "version": "${version}",
+  "name": "Hanging Heads",
+  "description": "Allows mob heads to be placed on the underside of blocks.",
+  "authors": [
+    "ZLT"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/hanging-heads",
+    "sources": "https://github.com/ZLT9/hanging-heads"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.zlt.hangingheads.HangingHeads"
+    ]
+  },
+  "mixins": [
+    "hanging_heads.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "~${minecraft_version}",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
